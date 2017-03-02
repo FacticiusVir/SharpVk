@@ -50,8 +50,10 @@ namespace SharpVk
             {
                 int elementSize = (int)SizeOf<T>();
                 int transferSize = elementSize * count;
+                int startOffset = elementSize * startIndex;
 
                 byte* pointer = (byte*)dest.ToPointer();
+                pointer += startOffset;
 
                 var handle = GCHandle.Alloc(value, GCHandleType.Pinned);
 
