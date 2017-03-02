@@ -49,7 +49,7 @@ namespace SharpVk
             if (count > 0)
             {
                 int elementSize = (int)SizeOf<T>();
-                int transferSize = elementSize * value.Length;
+                int transferSize = elementSize * count;
 
                 byte* pointer = (byte*)dest.ToPointer();
 
