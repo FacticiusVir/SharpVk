@@ -376,6 +376,45 @@ namespace SharpVk.Glfw
         public static extern KeyDelegate SetCharCallback(WindowHandle window, CharDelegate callback);
 
         /// <summary>
+        /// Sets a callback for Mouse movement events.
+        /// Use this for full mouse path resolution between PollEvents() calls.
+        ///
+        /// From GLFW Documentation: The callback functions receives the cursor position, measured in screen coordinates 
+        /// but relative to the top-left corner of the window client area. On platforms that provide it, the full sub-pixel
+        /// cursor position is passed on.
+        /// </summary>
+        /// <returns>
+        /// The Callback set
+        /// </returns>
+        [DllImport(GlfwDll, CallingConvention = CallingConvention.Cdecl, EntryPoint = "glfwSetCursorPosCallback")]
+        public static extern CursorPosDelegate SetCursorPosCallback(WindowHandle window, CursorPosDelegate callback);
+
+        /// <summary>
+        /// Sets a Callback for Button Events (i.e. clicks)
+        /// This also detects mouse press and release events done between PollEvents() calls.
+        /// From GLFW Documentation: Whenever you poll state, you risk missing the state change you are looking for. 
+        /// If a pressed mouse button is released again before you poll its state, you will have missed the button press.
+        /// The recommended solution for this is to use a mouse button callback, but there is also the GLFW_STICKY_MOUSE_BUTTONS input mode.
+        /// </summary>
+        /// <returns>
+        /// The Callback set
+        /// </returns>
+        [DllImport(GlfwDll, CallingConvention = CallingConvention.Cdecl, EntryPoint = "glfwSetMouseButtonCallback")]
+        public static extern MouseButtonDelegate SetMouseButtonPosCallback(WindowHandle window, MouseButtonDelegate callback);
+       
+        /// <summary>
+        /// Sets a Callback for Mouse Scrolling Events. (i.e. scroll wheel)
+        /// There is no polling support for this, so if youre interested in the wheel, you have to set this callback
+        /// NOTE: your normal desktop mouse variant likely only reports Y-Coordinate
+        /// </summary>
+        /// <returns>
+        /// The Callback set
+        /// </returns>
+        [DllImport(GlfwDll, CallingConvention = CallingConvention.Cdecl, EntryPoint = "glfwSetScrollCallback")]
+        public static extern ScrollDelegate SetScrollCallback(WindowHandle window, ScrollDelegate callback);
+
+
+        /// <summary>
         /// Returns an array of names of Vulkan instance extensions required by
         /// GLFW for creating Vulkan surfaces for GLFW windows. If successful,
         /// the list will always contains VK_KHR_surface, so if you don't

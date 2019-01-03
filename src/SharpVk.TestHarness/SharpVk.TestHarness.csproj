@@ -36,8 +36,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SharpVk.Glfw\SharpVk.Glfw.csproj" />
-    <ProjectReference Include="..\SharpVk.Shanq.GlmSharp\SharpVk.Shanq.GlmSharp.csproj" />
-    <ProjectReference Include="..\SharpVk.Shanq\SharpVk.Shanq.csproj" />
     <ProjectReference Include="..\SharpVk\SharpVk.csproj" />
   </ItemGroup>
 

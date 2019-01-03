@@ -11,6 +11,18 @@ namespace SharpVk
             new Program().Run();
         }
 
+        private static void SetCallbacks(Window window)
+        {
+            Glfw3.SetCharCallback(window.Handle, new CharDelegate((handle, codepoint) => 
+                Console.WriteLine("CharDelegate called (codepoint: " + codepoint + ")")));
+            Glfw3.SetScrollCallback(window.Handle, new ScrollDelegate((handle, xoffset, yoffset) => 
+                Console.WriteLine("ScrollDelegate called (xoffset: " + xoffset + ", yoffset: " + yoffset + ")")));
+            Glfw3.SetCursorPosCallback(window.Handle, new CursorPosDelegate((handle, xpos, ypos) => 
+                Console.WriteLine("CursorPosDelegate called (xpos: " + xpos + ", ypos: " + ypos + ")")));
+            Glfw3.SetMouseButtonPosCallback(window.Handle, new MouseButtonDelegate((handle, button, action, mods ) => 
+                Console.WriteLine("CursorPosDelegate called (button: " + button + ", action: " + 
+                Enum.GetName(typeof(InputAction), action) + ", mods: " + Enum.GetName(typeof(Modifier), mods) + ")")));  
+        }
         private unsafe void Run()
         {
             var extensions = Instance.EnumerateExtensionProperties(null);
@@ -25,25 +37,13 @@ namespace SharpVk
             {
                 Glfw3.Init();
 
-                var callback = new CharDelegate((handle, codepoint) => Console.WriteLine(codepoint));
-
                 using (var window = new Window(1920, 1080, "Test"))
                 {
-                    Glfw3.SetCharCallback(window.Handle, callback);
-
-                    var previous = InputAction.Release;
+                    
+                    SetCallbacks(window);
 
                     while (!window.ShouldClose)
                     {
-                        var mouseAction = Glfw3.GetMouseButton(window.Handle, 1);
-
-                        if (mouseAction != previous)
-                        {
-                            Console.WriteLine(mouseAction);
-
-                            previous = mouseAction;
-                        }
-
                         Glfw3.PollEvents();
                     }
                 }
