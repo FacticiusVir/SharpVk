@@ -15,6 +15,5 @@ namespace SharpVk.Glfw
     /// <param name="mods">
     /// Keyboard modifiers during that time
     /// </param>
-
     public delegate void MouseButtonDelegate(WindowHandle window, int button, InputAction action, Modifier mods);
 }

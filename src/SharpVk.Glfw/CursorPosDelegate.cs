@@ -12,6 +12,5 @@ namespace SharpVk.Glfw
     /// <param name="ypos">
     /// The y position of the cursor
     /// </param>
-
     public delegate void CursorPosDelegate(WindowHandle window, double xpos, double ypos);
 }

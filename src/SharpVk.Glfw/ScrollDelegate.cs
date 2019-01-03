@@ -12,6 +12,5 @@ namespace SharpVk.Glfw
     /// <param name="yoffset">
     /// Scroll y amount
     /// </param>
-
     public delegate void ScrollDelegate(WindowHandle window, double xoffset, double yoffset);
 }

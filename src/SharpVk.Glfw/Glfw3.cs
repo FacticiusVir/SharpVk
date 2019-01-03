@@ -413,7 +413,6 @@ namespace SharpVk.Glfw
         [DllImport(GlfwDll, CallingConvention = CallingConvention.Cdecl, EntryPoint = "glfwSetScrollCallback")]
         public static extern ScrollDelegate SetScrollCallback(WindowHandle window, ScrollDelegate callback);
 
-
         /// <summary>
         /// Returns an array of names of Vulkan instance extensions required by
         /// GLFW for creating Vulkan surfaces for GLFW windows. If successful,

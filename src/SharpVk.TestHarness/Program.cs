@@ -39,7 +39,6 @@ namespace SharpVk
 
                 using (var window = new Window(1920, 1080, "Test"))
                 {
-                    
                     SetCallbacks(window);
 
                     while (!window.ShouldClose)
