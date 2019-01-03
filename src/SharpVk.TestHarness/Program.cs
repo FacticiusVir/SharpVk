@@ -20,7 +20,7 @@ namespace SharpVk
             Glfw3.SetCursorPosCallback(window.Handle, new CursorPosDelegate((handle, xpos, ypos) => 
                 Console.WriteLine("CursorPosDelegate called (xpos: " + xpos + ", ypos: " + ypos + ")")));
             Glfw3.SetMouseButtonPosCallback(window.Handle, new MouseButtonDelegate((handle, button, action, mods ) => 
-                Console.WriteLine("CursorPosDelegate called (button: " + button + ", action: " + 
+                Console.WriteLine("MouseButtonDelegate called (button: " + button + ", action: " + 
                 Enum.GetName(typeof(InputAction), action) + ", mods: " + Enum.GetName(typeof(Modifier), mods) + ")")));  
         }
         private unsafe void Run()
