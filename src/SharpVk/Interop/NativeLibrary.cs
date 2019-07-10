@@ -31,6 +31,17 @@ namespace SharpVk.Interop
             public const int RtldNow = 2;
         }
 
+        private static class LibDlOSX
+        {
+            [DllImport("libdl.dylib")]
+            public static extern IntPtr dlopen(string fileName, int flags);
+
+            [DllImport("libdl.dylib")]
+            public static extern IntPtr dlsym(IntPtr handle, string name);
+
+            public const int RtldNow = 2;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -47,6 +58,15 @@ namespace SharpVk.Interop
                 if(this.library == IntPtr.Zero)
                 {
                     this.library = LibDl.dlopen("libvulkan.so", LibDl.RtldNow);
+                }
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                this.library = LibDlOSX.dlopen("libvulkan.dylib.1", LibDlOSX.RtldNow);
+
+                if(this.library == IntPtr.Zero)
+                {
+                    this.library = LibDlOSX.dlopen("libvulkan.dylib", LibDlOSX.RtldNow);
                 }
             }
             else
@@ -74,6 +94,11 @@ namespace SharpVk.Interop
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 return LibDl.dlsym(this.library, name);
+
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                return LibDlOSX.dlsym(this.library, name);
 
             }
             else
